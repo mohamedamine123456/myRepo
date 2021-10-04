@@ -27,7 +27,7 @@ public class ListPartionerImplTest {
     @Test
     public void testValidPartioningIfListSizeIsDivisibleByPartitionMaxSize() throws ListPartitionException {
         List<Integer> inputList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-        Collection<List<Integer>> actual = partioner.partionate(inputList, 2);
+        List<List<Integer>> actual = partioner.partionate(inputList, 2);
         assertEquals(6, actual.size());
         actual.forEach(p -> assertTrue(p.size() == 2));
     }
@@ -35,7 +35,7 @@ public class ListPartionerImplTest {
     @Test
     public void testValidPartioningIfListSizeIsNotDivisibleByPartitionMaxSize() throws ListPartitionException {
         List<Integer> inputList = Arrays.asList(1, 2, 3);
-        Collection<List<Integer>> actual = partioner.partionate(inputList, 2);
+        List<List<Integer>> actual = partioner.partionate(inputList, 2);
         assertEquals(2, actual.size());
 
         Iterator<List<Integer>> iterator = actual.iterator();
@@ -50,7 +50,7 @@ public class ListPartionerImplTest {
     @Test
     public void testIfInputListSizeIsLowerThanPartitionMaxSizeReturnesOneSublist() throws ListPartitionException {
         List<Integer> inputList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-        Collection<List<Integer>> actual = partioner.partionate(inputList, 20);
+        List<List<Integer>> actual = partioner.partionate(inputList, 20);
         assertEquals(1, actual.size());
         assertEquals(actual.iterator().next(), inputList);
     }
@@ -58,14 +58,14 @@ public class ListPartionerImplTest {
     @Test
     public void testIfEmptyInputListReturnsOneEmptyList() throws ListPartitionException {
         List<Integer> inputList = new ArrayList<>();
-        Collection<List<Integer>> actual = partioner.partionate(inputList, 2);
+        List<List<Integer>> actual = partioner.partionate(inputList, 2);
         assertEquals(0, actual.size());
     }
 
     @Test
     public void testIfListOfStringIsCorrectlyPartitioned() throws ListPartitionException {
         List<String> inputList = Arrays.asList("foo", "bar", "toto", "hello");
-        Collection<List<String>> actual = partioner.partionate(inputList, 3);
+        List<List<String>> actual = partioner.partionate(inputList, 3);
         assertEquals(2, actual.size());
 
         Iterator<List<String>> iterator = actual.iterator();
